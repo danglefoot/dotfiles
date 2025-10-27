@@ -1,0 +1,152 @@
+" ============================================================================
+" VsVim Configuration for Visual Studio
+" ============================================================================
+" Consistent with Neovim/IdeaVim configs while leveraging VS features
+" ============================================================================
+
+" ============================================================================
+" GENERAL SETTINGS
+" ============================================================================
+set number                      " Show line numbers
+set relativenumber              " Relative line numbers
+set ignorecase                  " Case insensitive search
+set smartcase                   " Unless uppercase is used
+set incsearch                   " Incremental search
+set hlsearch                    " Highlight search results
+set clipboard=unnamed           " Use system clipboard
+set visualbell                  " Visual bell instead of beeping
+set vsvim_useeditordefaults     " Use VS defaults where appropriate
+
+" Leader key
+let mapleader = " "
+
+" ============================================================================
+" EDITING & MOVEMENT (matching Neovim config)
+" ============================================================================
+
+" Redo with U (more convenient than Ctrl+r)
+nnoremap U <C-r>
+
+" Move selected lines up/down in visual mode
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Better indenting (stay in visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+" Paste over selection without yanking
+vnoremap p "_dP
+
+" Move to start/end of line (H=Home, L=Last)
+nnoremap H ^
+vnoremap H ^
+nnoremap L g_
+vnoremap L g_
+
+" Split line (opposite of J)
+nnoremap X i<CR><Esc>
+
+" Clear search highlighting
+nnoremap <Esc> :nohlsearch<CR>
+
+" ============================================================================
+" WINDOW NAVIGATION
+" ============================================================================
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+
+" ============================================================================
+" VISUAL STUDIO COMMAND MAPPINGS
+" ============================================================================
+
+" File operations
+nnoremap <leader><space> :vsc Edit.GoToAll<CR>
+nnoremap <leader>ff :vsc Edit.GoToAll<CR>
+nnoremap <leader>o :vsc Window.QuickLaunch<CR>
+nnoremap <leader>e :vsc View.SolutionExplorer<CR>
+nnoremap <leader>/ :vsc Edit.FindinFiles<CR>
+
+" LSP/Navigation
+nnoremap gd :vsc Edit.GoToDefinition<CR>
+nnoremap gD :vsc Edit.GoToDeclaration<CR>
+nnoremap gi :vsc Edit.GoToImplementation<CR>
+nnoremap gr :vsc Edit.FindAllReferences<CR>
+nnoremap gI :vsc Edit.PeekDefinition<CR>
+nnoremap K :vsc Edit.QuickInfo<CR>
+nnoremap gh :vsc Edit.QuickInfo<CR>
+
+" Jump between methods
+nnoremap [[ :vsc Edit.PreviousMethod<CR>
+nnoremap ]] :vsc Edit.NextMethod<CR>
+
+" Next/previous error
+nnoremap ]d :vsc View.NextError<CR>
+nnoremap [d :vsc View.PreviousError<CR>
+
+" Browser-style navigation
+nnoremap gb :vsc View.NavigateBackward<CR>
+nnoremap gf :vsc View.NavigateForward<CR>
+
+" Code actions
+nnoremap <leader>ca :vsc View.QuickActions<CR>
+nnoremap <leader>cr :vsc Refactor.Rename<CR>
+nnoremap <leader>cf :vsc Edit.FormatDocument<CR>
+nnoremap <leader>cs :vsc Edit.GoToMember<CR>
+
+" Refactoring
+nnoremap <leader>r :vsc Refactor.Refactor<CR>
+
+" Buffer/Tab/Window management
+nnoremap <leader>bd :vsc Window.CloseDocumentWindow<CR>
+nnoremap <leader>bo :vsc Window.CloseAllButThis<CR>
+
+" Window splits
+nnoremap <leader>sv :vsc Window.NewVerticalTabGroup<CR>
+nnoremap <leader>sh :vsc Window.NewHorizontalTabGroup<CR>
+
+" Debug commands (matching Neovim DAP)
+nnoremap <leader>dc :vsc Debug.Start<CR>
+nnoremap <leader>db :vsc Debug.ToggleBreakpoint<CR>
+nnoremap <leader>di :vsc Debug.StepInto<CR>
+nnoremap <leader>do :vsc Debug.StepOver<CR>
+nnoremap <leader>dO :vsc Debug.StepOut<CR>
+nnoremap <leader>dt :vsc Debug.StopDebugging<CR>
+nnoremap <leader>dl :vsc Debug.Continue<CR>
+
+" .NET specific (matching easy-dotnet keybinds)
+nnoremap <leader>nb :vsc Build.BuildSolution<CR>
+nnoremap <leader>nt :vsc TestExplorer.RunAllTests<CR>
+nnoremap <leader>nr :vsc Debug.StartWithoutDebugging<CR>
+nnoremap <leader>nc :vsc Build.CleanSolution<CR>
+
+" Git operations (if using Git extension)
+nnoremap <leader>gg :vsc Team.Git.GoToGitChanges<CR>
+nnoremap <leader>gb :vsc Team.Git.GoToGitBranches<CR>
+
+" Search/Find
+nnoremap <leader>ss :vsc Edit.GoToAll<CR>
+nnoremap <leader>sa :vsc Tools.CommandWindow<CR>
+
+" Output/Error windows
+nnoremap <leader>uo :vsc View.Output<CR>
+nnoremap <leader>ue :vsc View.ErrorList<CR>
+
+" ============================================================================
+" COMMENTS
+" ============================================================================
+" VsVim doesn't have vim-commentary, use VS native commenting
+nnoremap gcc :vsc Edit.ToggleLineComment<CR>
+vnoremap gc :vsc Edit.ToggleLineComment<CR>
+
+" ============================================================================
+" NOTES
+" ============================================================================
+" VsVim limitations compared to IdeaVim:
+" - No plugin system (surround, easymotion, etc.)
+" - Use :vsc commands to call Visual Studio commands
+" - To find VS command names: Tools -> Options -> Environment -> Keyboard
+" - Some advanced text objects may not work
+" ============================================================================

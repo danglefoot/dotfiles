@@ -1,0 +1,261 @@
+" ============================================================================
+" IdeaVim Configuration
+" ============================================================================
+" Consistent with Neovim config while leveraging IntelliJ IDE features
+" ============================================================================
+
+" ============================================================================
+" PLUGINS
+" ============================================================================
+" Enable IdeaVim extensions for enhanced functionality
+set surround                    " ys, cs, ds commands (vim-surround)
+set commentary                  " gc, gcc commands (vim-commentary)
+set multiple-cursors            " <C-n> for multiple selections
+set easymotion                  " <leader><leader> prefix for easy motion
+set textobj-entire              " ae, ie for entire buffer text objects
+" set ReplaceWithRegister         " gr{motion} to replace with register (disabled - conflicts with gr for go-to-references)
+set exchange                    " cx{motion} to exchange text
+set highlightedyank             " Highlight yanked text briefly
+set quickscope                  " Highlight f/F/t/T jump targets
+set argtextobj                  " ia, aa for argument text objects
+set textobj-indent              " ii, ai for indent text objects
+set which-key                   " Show leader key hints
+
+" ============================================================================
+" GENERAL SETTINGS
+" ============================================================================
+" Disable space default behavior in normal mode before setting as leader
+let mapleader = " "             " Space as leader key (matches Neovim)
+set clipboard+=unnamed          " Use system clipboard
+set clipboard+=ideaput          " Use IDE paste for better formatting
+set number                      " Show line numbers
+set relativenumber              " Relative line numbers
+set scrolloff=5                 " Keep 5 lines above/below cursor
+set incsearch                   " Incremental search
+set hlsearch                    " Highlight search results
+set ignorecase                  " Case insensitive search
+set smartcase                   " Unless uppercase is used
+set visualbell                  " Visual bell instead of beeping
+set noerrorbells                " No error bells
+set showmode                    " Show current mode
+set history=1000                " Command history
+set ideajoin                    " Use IDE's smart join
+set idearefactormode=keep       " Keep mode after refactoring
+set ideastatusicon=gray         " IDE status icon color
+
+" Plugin-specific settings
+let g:argtextobj_pairs="[:],(:),<:>"
+set notimeout                   " No timeout on leader key
+
+" ============================================================================
+" EDITING & MOVEMENT (matching Neovim config)
+" ============================================================================
+
+" Redo with U (more convenient than Ctrl+r)
+nnoremap U <C-r>
+
+" Move selected lines up/down in visual mode
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Better indenting (stay in visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+" Paste over selection without yanking
+vnoremap p "_dP
+
+" Move to start/end of line (H=Home, L=Last)
+nnoremap H ^
+vnoremap H ^
+onoremap H ^
+nnoremap L g_
+vnoremap L g_
+onoremap L g_
+
+" Split line (opposite of J)
+nnoremap X i<CR><Esc>
+
+" Clear search highlighting
+nnoremap <Esc> :nohlsearch<CR>
+
+" Test mapping to verify Action syntax works
+nnoremap <C-t> <Action>(GotoFile)
+
+" ============================================================================
+" WINDOW NAVIGATION
+" ============================================================================
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+
+" ============================================================================
+" NAVIGATION & JUMPS
+" ============================================================================
+
+" Jump between methods
+nmap [[ <Action>(MethodUp)
+nmap ]] <Action>(MethodDown)
+
+" Next/previous error
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
+
+" Next/previous change (git hunks)
+nmap ]c <Action>(VcsShowNextChangeMarker)
+nmap [c <Action>(VcsShowPrevChangeMarker)
+
+" Browser-style navigation
+nmap gb <Action>(Back)
+nmap gf <Action>(Forward)
+
+" ============================================================================
+" LSP-STYLE MAPPINGS (matching Neovim)
+" ============================================================================
+
+" Go to definition/declaration/implementation
+nmap gd <Action>(GotoDeclaration)
+nmap gD <Action>(GotoTypeDeclaration)
+nmap gi <Action>(GotoImplementation)
+nmap gr <Action>(ShowUsages)
+nmap gI <Action>(QuickImplementations)
+
+" Hover/documentation
+nmap K <Action>(QuickJavaDoc)
+nmap gh <Action>(ShowHoverInfo)
+
+" ============================================================================
+" LEADER KEY MAPPINGS
+" ============================================================================
+
+" File operations
+nmap <leader><space> <Action>(GotoFile)
+nmap <leader>ff <Action>(GotoFile)
+nmap <leader>o <Action>(RecentFiles)
+nmap <leader>e <Action>(SelectInProjectView)
+nmap <leader>/ <Action>(FindInPath)
+
+" Code actions
+nmap <leader>ca <Action>(ShowIntentionActions)
+nmap <leader>cr <Action>(RenameElement)
+nmap <leader>cf <Action>(ReformatCode)
+nmap <leader>cs <Action>(FileStructurePopup)
+
+" Buffer/Tab management
+nmap <leader>bd <Action>(CloseContent)
+nmap <leader>bo <Action>(CloseAllEditorsButActive)
+
+" Debug commands (matching Neovim DAP)
+nmap <leader>dc <Action>(Debug)
+nmap <leader>db <Action>(ToggleLineBreakpoint)
+nmap <leader>di <Action>(StepInto)
+nmap <leader>do <Action>(StepOver)
+nmap <leader>dO <Action>(StepOut)
+nmap <leader>dt <Action>(Stop)
+nmap <leader>dl <Action>(Resume)
+
+" .NET specific (matching easy-dotnet keybinds)
+nmap <leader>nb <Action>(Build)
+nmap <leader>nt <Action>(RiderUnitTestRunContextAction)
+nmap <leader>nr <Action>(Run)
+nmap <leader>nc <Action>(Clean)
+
+" Git operations
+nmap <leader>gg <Action>(ActivateVersionControlToolWindow)
+nmap <leader>gb <Action>(Git.Branches)
+nmap <leader>gc <Action>(CheckinProject)
+nmap <leader>gp <Action>(Vcs.Push)
+nmap <leader>gl <Action>(Vcs.Show.Log)
+
+" Refactoring menu
+nmap <leader>r <Action>(Refactorings.QuickListPopupAction)
+
+" Search/Find
+nmap <leader>ss <Action>(SearchEverywhere)
+nmap <leader>sa <Action>(GotoAction)
+
+" Window management
+nmap <leader>sv <Action>(SplitVertically)
+nmap <leader>sh <Action>(SplitHorizontally)
+nmap <leader>wq <Action>(Unsplit)
+nmap <leader>wm <Action>(HideAllWindows)
+
+" Toggle views
+nmap <leader>uz <Action>(ToggleDistractionFreeMode)
+nmap <leader>uf <Action>(ToggleFullScreen)
+nmap <leader>uz <Action>(ToggleZenMode)
+
+" ============================================================================
+" CUSTOM ACTIONS
+" ============================================================================
+
+" Multiple cursors (enhanced)
+map <C-n> <Plug>NextWholeOccurrence
+map g<C-n> <Plug>NextOccurrence
+map <leader><C-n> <Plug>AllWholeOccurrences
+
+" EasyMotion (using gj prefix for "go jump" - consistent with Neovim flash)
+map gjs <Plug>(easymotion-s)
+map gjf <Plug>(easymotion-f)
+map gjw <Plug>(easymotion-w)
+
+" ============================================================================
+" WHICH-KEY CONFIGURATION
+" ============================================================================
+let g:WhichKey_FontSize = 16
+let g:WhichKey_CommandColor = "#41ead4"
+let g:WhichKey_PrefixColor = "#f335b2"
+let g:WhichKey_SortOrder = "by_key_prefix_first"
+
+let g:WhichKeyDesc_leader = "<leader> Leader key"
+
+let g:WhichKeyDesc_file = "<leader><space> Find files"
+let g:WhichKeyDesc_buffers = "<leader>o Recent files"
+let g:WhichKeyDesc_explorer = "<leader>e Project explorer"
+
+let g:WhichKeyDesc_code = "<leader>c Code"
+let g:WhichKeyDesc_code_action = "<leader>ca Code action"
+let g:WhichKeyDesc_code_rename = "<leader>cr Rename"
+let g:WhichKeyDesc_code_format = "<leader>cf Format"
+let g:WhichKeyDesc_code_structure = "<leader>cs Symbol outline"
+
+let g:WhichKeyDesc_buffer = "<leader>b Buffer"
+let g:WhichKeyDesc_buffer_delete = "<leader>bd Close buffer"
+let g:WhichKeyDesc_buffer_only = "<leader>bo Close others"
+
+let g:WhichKeyDesc_debug = "<leader>d Debug"
+let g:WhichKeyDesc_debug_continue = "<leader>dc Start/Continue"
+let g:WhichKeyDesc_debug_breakpoint = "<leader>db Toggle breakpoint"
+let g:WhichKeyDesc_debug_into = "<leader>di Step into"
+let g:WhichKeyDesc_debug_over = "<leader>do Step over"
+let g:WhichKeyDesc_debug_out = "<leader>dO Step out"
+let g:WhichKeyDesc_debug_stop = "<leader>dt Stop"
+let g:WhichKeyDesc_debug_last = "<leader>dl Resume"
+
+let g:WhichKeyDesc_dotnet = "<leader>n .NET"
+let g:WhichKeyDesc_dotnet_build = "<leader>nb Build"
+let g:WhichKeyDesc_dotnet_test = "<leader>nt Test"
+let g:WhichKeyDesc_dotnet_run = "<leader>nr Run"
+let g:WhichKeyDesc_dotnet_clean = "<leader>nc Clean"
+
+let g:WhichKeyDesc_git = "<leader>g Git"
+let g:WhichKeyDesc_git_status = "<leader>gg Git status"
+let g:WhichKeyDesc_git_branches = "<leader>gb Branches"
+let g:WhichKeyDesc_git_commit = "<leader>gc Commit"
+let g:WhichKeyDesc_git_push = "<leader>gp Push"
+let g:WhichKeyDesc_git_log = "<leader>gl Log"
+
+let g:WhichKeyDesc_refactor = "<leader>r Refactor menu"
+
+let g:WhichKeyDesc_search = "<leader>s Search"
+let g:WhichKeyDesc_search_everywhere = "<leader>ss Search everywhere"
+let g:WhichKeyDesc_search_action = "<leader>sa Search actions"
+
+let g:WhichKeyDesc_window = "<leader>w Window"
+let g:WhichKeyDesc_window_close = "<leader>wq Close split"
+let g:WhichKeyDesc_window_maximize = "<leader>wm Maximize"
+
+let g:WhichKeyDesc_toggle = "<leader>u Toggle"
+let g:WhichKeyDesc_toggle_distraction = "<leader>uz Zen mode"
+let g:WhichKeyDesc_toggle_fullscreen = "<leader>uf Fullscreen"
