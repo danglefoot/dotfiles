@@ -28,11 +28,6 @@
     "command": "workbench.action.findInFiles",
     "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
   },
-  {
-    "key": "space s g",
-    "command": "workbench.action.findInFiles",
-    "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
-  },
 
   // Visual Line Movement (in case vscode-neovim doesn't handle it)
   {
