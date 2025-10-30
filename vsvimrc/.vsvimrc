@@ -104,8 +104,10 @@ nnoremap <leader>bd :vsc Window.CloseDocumentWindow<CR>
 nnoremap <leader>bo :vsc Window.CloseAllButThis<CR>
 
 " Window splits
-nnoremap <leader>sv :vsc Window.NewVerticalTabGroup<CR>
-nnoremap <leader>sh :vsc Window.NewHorizontalTabGroup<CR>
+nnoremap <leader>wv :vsc Window.NewVerticalTabGroup<CR>
+nnoremap <leader>wh :vsc Window.NewHorizontalTabGroup<CR>
+nnoremap <leader>wq :vsc Window.CloseDocumentWindow<CR>
+nnoremap <leader>wm :vsc Window.AutoHideAll<CR>
 
 " Debug commands (matching Neovim DAP)
 nnoremap <leader>dc :vsc Debug.Start<CR>
@@ -125,6 +127,8 @@ nnoremap <leader>nc :vsc Build.CleanSolution<CR>
 " Git operations (if using Git extension)
 nnoremap <leader>gg :vsc Team.Git.GoToGitChanges<CR>
 nnoremap <leader>gb :vsc Team.Git.GoToGitBranches<CR>
+nnoremap <leader>gc :vsc Team.Git.Commit<CR>
+nnoremap <leader>gp :vsc Team.Git.Push<CR>
 
 " Search/Find
 nnoremap <leader>ss :vsc Edit.GoToAll<CR>

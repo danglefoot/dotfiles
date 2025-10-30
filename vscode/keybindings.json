@@ -1,4 +1,3 @@
-
 [
   // Quick Open Navigation (when picker is open)
   {
@@ -10,35 +9,6 @@
     "key": "ctrl+p",
     "command": "workbench.action.quickOpenSelectPrevious",
     "when": "!editorFocus"
-  },
-
-  // Main navigation (work both in editor and when UI focused)
-  {
-    "key": "space space",
-    "command": "workbench.action.quickOpen",
-    "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
-  },
-  {
-    "key": "space f f",
-    "command": "workbench.action.quickOpen",
-    "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
-  },
-  {
-    "key": "space /",
-    "command": "workbench.action.findInFiles",
-    "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
-  },
-
-  // Visual Line Movement (in case vscode-neovim doesn't handle it)
-  {
-    "key": "shift-k",
-    "command": "editor.action.moveLinesUpAction",
-    "when": "vim.mode == 'VisualLine' && editorTextFocus"
-  },
-  {
-    "key": "shift-j",
-    "command": "editor.action.moveLinesDownAction",
-    "when": "vim.mode == 'VisualLine' && editorTextFocus"
   },
 
   // File Explorer Commands (when sidebar is focused)

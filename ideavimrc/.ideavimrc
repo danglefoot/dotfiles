@@ -176,13 +176,13 @@ nmap <leader>ss <Action>(SearchEverywhere)
 nmap <leader>sa <Action>(GotoAction)
 
 " Window management
-nmap <leader>sv <Action>(SplitVertically)
-nmap <leader>sh <Action>(SplitHorizontally)
+nmap <leader>wv <Action>(SplitVertically)
+nmap <leader>wh <Action>(SplitHorizontally)
 nmap <leader>wq <Action>(Unsplit)
 nmap <leader>wm <Action>(HideAllWindows)
 
 " Toggle views
-nmap <leader>uz <Action>(ToggleDistractionFreeMode)
+nmap <leader>ud <Action>(ToggleDistractionFreeMode)
 nmap <leader>uf <Action>(ToggleFullScreen)
 nmap <leader>uz <Action>(ToggleZenMode)
 
@@ -257,5 +257,6 @@ let g:WhichKeyDesc_window_close = "<leader>wq Close split"
 let g:WhichKeyDesc_window_maximize = "<leader>wm Maximize"
 
 let g:WhichKeyDesc_toggle = "<leader>u Toggle"
-let g:WhichKeyDesc_toggle_distraction = "<leader>uz Zen mode"
+let g:WhichKeyDesc_toggle_distraction = "<leader>ud Distraction free"
 let g:WhichKeyDesc_toggle_fullscreen = "<leader>uf Fullscreen"
+let g:WhichKeyDesc_toggle_zen = "<leader>uz Zen mode"
