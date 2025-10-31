@@ -130,7 +130,7 @@ nmap gh <Action>(ShowHoverInfo)
 " ============================================================================
 
 " File operations
-nmap <leader><space> <Action>(GotoFile)
+nmap <leader><space> <Action>(SearchEverywhere)
 nmap <leader>ff <Action>(GotoFile)
 nmap <leader>o <Action>(RecentFiles)
 nmap <leader>e <Action>(SelectInProjectView)
@@ -214,7 +214,7 @@ let g:WhichKey_SortOrder = "by_key_prefix_first"
 
 let g:WhichKeyDesc_leader = "<leader> Leader key"
 
-let g:WhichKeyDesc_file = "<leader><space> Find files"
+let g:WhichKeyDesc_file = "<leader><space> Quick search"
 let g:WhichKeyDesc_buffers = "<leader>o Recent files"
 let g:WhichKeyDesc_explorer = "<leader>e Project explorer"
 

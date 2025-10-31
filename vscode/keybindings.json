@@ -1,4 +1,16 @@
 [
+  // Leader key shortcuts (work everywhere, not just in editor)
+  {
+    "key": "space space",
+    "command": "workbench.action.quickOpen",
+    "when": "!editorTextFocus && !inputFocus"
+  },
+  {
+    "key": "space /",
+    "command": "workbench.action.findInFiles",
+    "when": "!editorTextFocus && !inputFocus"
+  },
+
   // Quick Open Navigation (when picker is open)
   {
     "key": "ctrl+n",

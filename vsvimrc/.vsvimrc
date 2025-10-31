@@ -64,7 +64,7 @@ nnoremap <C-k> <C-w>k
 
 " File operations
 nnoremap <leader><space> :vsc Edit.GoToAll<CR>
-nnoremap <leader>ff :vsc Edit.GoToAll<CR>
+nnoremap <leader>ff :vsc Edit.GoToFile<CR>
 nnoremap <leader>o :vsc Window.QuickLaunch<CR>
 nnoremap <leader>e :vsc View.SolutionExplorer<CR>
 nnoremap <leader>/ :vsc Edit.FindinFiles<CR>
