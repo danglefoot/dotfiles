@@ -130,8 +130,12 @@ nnoremap <leader>gb :vsc Team.Git.GoToGitBranches<CR>
 nnoremap <leader>gc :vsc Team.Git.Commit<CR>
 nnoremap <leader>gp :vsc Team.Git.Push<CR>
 
-" Search/Find
-nnoremap <leader>ss :vsc Edit.GoToAll<CR>
+" Search/Find (<leader>s menu)
+nnoremap <leader>se :vsc Edit.GoToAll<CR>
+nnoremap <leader>sf :vsc Edit.GoToFile<CR>
+nnoremap <leader>st :vsc Edit.FindinFiles<CR>
+nnoremap <leader>ss :vsc Edit.GoToSymbol<CR>
+nnoremap <leader>sc :vsc Edit.GoToType<CR>
 nnoremap <leader>sa :vsc Tools.CommandWindow<CR>
 
 " Output/Error windows

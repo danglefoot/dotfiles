@@ -171,8 +171,12 @@ nmap <leader>gl <Action>(Vcs.Show.Log)
 " Refactoring menu
 nmap <leader>r <Action>(Refactorings.QuickListPopupAction)
 
-" Search/Find
-nmap <leader>ss <Action>(SearchEverywhere)
+" Search/Find (<leader>s menu)
+nmap <leader>se <Action>(SearchEverywhere)
+nmap <leader>sf <Action>(GotoFile)
+nmap <leader>st <Action>(FindInPath)
+nmap <leader>ss <Action>(GotoSymbol)
+nmap <leader>sc <Action>(GotoClass)
 nmap <leader>sa <Action>(GotoAction)
 
 " Window management
@@ -249,8 +253,12 @@ let g:WhichKeyDesc_git_log = "<leader>gl Log"
 let g:WhichKeyDesc_refactor = "<leader>r Refactor menu"
 
 let g:WhichKeyDesc_search = "<leader>s Search"
-let g:WhichKeyDesc_search_everywhere = "<leader>ss Search everywhere"
-let g:WhichKeyDesc_search_action = "<leader>sa Search actions"
+let g:WhichKeyDesc_search_everywhere = "<leader>se Search everywhere"
+let g:WhichKeyDesc_search_files = "<leader>sf Search files"
+let g:WhichKeyDesc_search_text = "<leader>st Search text"
+let g:WhichKeyDesc_search_symbols = "<leader>ss Search symbols"
+let g:WhichKeyDesc_search_classes = "<leader>sc Search classes"
+let g:WhichKeyDesc_search_actions = "<leader>sa Search actions"
 
 let g:WhichKeyDesc_window = "<leader>w Window"
 let g:WhichKeyDesc_window_close = "<leader>wq Close split"
