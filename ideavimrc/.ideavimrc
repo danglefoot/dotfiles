@@ -200,6 +200,8 @@ map g<C-n> <Plug>NextOccurrence
 map <leader><C-n> <Plug>AllWholeOccurrences
 
 " EasyMotion (using gj prefix for "go jump" - consistent with Neovim flash)
+" Disable default <leader><leader> prefix to avoid conflict with <leader><space>
+let g:EasyMotion_do_mapping = 0
 map gjs <Plug>(easymotion-s)
 map gjf <Plug>(easymotion-f)
 map gjw <Plug>(easymotion-w)
