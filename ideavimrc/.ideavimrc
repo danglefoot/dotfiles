@@ -111,6 +111,27 @@ nmap gb <Action>(Back)
 nmap gf <Action>(Forward)
 
 " ============================================================================
+" MARKS
+" ============================================================================
+
+" List all marks
+nnoremap <leader>lm :marks<CR>
+
+" Delete mark (IdeaVim limitation: can't use vim.fn.input, so use command line)
+nnoremap dm :delmarks<Space>
+
+" Delete all marks in current buffer
+nnoremap dm! :delmarks!<CR>
+
+" Next/previous mark (by line)
+nnoremap ]' ]'
+nnoremap [' ['
+
+" Next/previous mark (exact position)
+nnoremap ]` ]`
+nnoremap [` [`
+
+" ============================================================================
 " LSP-STYLE MAPPINGS (matching Neovim)
 " ============================================================================
 
@@ -270,3 +291,6 @@ let g:WhichKeyDesc_toggle = "<leader>u Toggle"
 let g:WhichKeyDesc_toggle_distraction = "<leader>ud Distraction free"
 let g:WhichKeyDesc_toggle_fullscreen = "<leader>uf Fullscreen"
 let g:WhichKeyDesc_toggle_zen = "<leader>uz Zen mode"
+
+let g:WhichKeyDesc_list = "<leader>l List"
+let g:WhichKeyDesc_list_marks = "<leader>lm List marks"

@@ -144,6 +144,36 @@ else
             echo "  ✓ Tmux configuration stowed"
         fi
 
+        # Stow Fish
+        if [ -d "fish" ]; then
+            stow -R fish
+            echo "  ✓ Fish configuration stowed"
+        fi
+
+        # Stow Git
+        if [ -d "git" ]; then
+            stow -R git
+            echo "  ✓ Git configuration stowed"
+        fi
+
+        # Stow Starship
+        if [ -d "starship" ]; then
+            stow -R starship
+            echo "  ✓ Starship configuration stowed"
+        fi
+
+        # Stow Karabiner
+        if [ -d "karabiner" ]; then
+            stow -R karabiner
+            echo "  ✓ Karabiner configuration stowed"
+        fi
+
+        # Stow Lazygit
+        if [ -d "lazygit" ]; then
+            stow -R lazygit
+            echo "  ✓ Lazygit configuration stowed"
+        fi
+
         # Stow IdeaVim
         if [ -d "ideavimrc" ]; then
             stow -R ideavimrc
@@ -180,5 +210,10 @@ else
     echo "  - IdeaVim: Managed by stow"
     echo "  - Neovim: Managed by stow"
     echo "  - Tmux: Managed by stow"
+    echo "  - Fish: Managed by stow"
+    echo "  - Git: Managed by stow"
+    echo "  - Starship: Managed by stow"
+    echo "  - Karabiner: Managed by stow"
+    echo "  - Lazygit: Managed by stow"
 fi
 echo ""

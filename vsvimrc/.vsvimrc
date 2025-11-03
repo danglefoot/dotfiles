@@ -90,6 +90,31 @@ nnoremap [d :vsc View.PreviousError<CR>
 nnoremap gb :vsc View.NavigateBackward<CR>
 nnoremap gf :vsc View.NavigateForward<CR>
 
+" ============================================================================
+" MARKS
+" ============================================================================
+
+" List all marks
+nnoremap <leader>lm :marks<CR>
+
+" Delete mark (VsVim limitation: simplified version)
+nnoremap dm :delmarks<Space>
+
+" Delete all marks in current buffer
+nnoremap dm! :delmarks!<CR>
+
+" Next/previous mark (by line)
+nnoremap ]' ]'
+nnoremap [' ['
+
+" Next/previous mark (exact position)
+nnoremap ]` ]`
+nnoremap [` [`
+
+" ============================================================================
+" CODE ACTIONS
+" ============================================================================
+
 " Code actions
 nnoremap <leader>ca :vsc View.QuickActions<CR>
 nnoremap <leader>cr :vsc Refactor.Rename<CR>
