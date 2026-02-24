@@ -1,0 +1,35 @@
+# ============================================================================
+# Ghostty Configuration
+# ============================================================================
+
+# Font Configuration
+font-family = Berkeley Mono
+font-size = 13
+
+# Disable font ligatures
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+
+# Theme Configuration (Gruvbox)
+theme = light:Gruvbox Light Hard,dark:Gruvbox Dark Hard
+
+# Window Configuration
+window-padding-balance = true
+window-padding-x = 4
+window-padding-y = 4
+window-save-state = always
+
+# Performance
+macos-non-native-fullscreen = true
+
+# macOS Option key behavior
+# Left Option acts as Alt for keybindings, right Option still types special characters
+macos-option-as-alt = left
+
+# Shell Integration
+shell-integration = fish
+shell-integration-features = cursor,sudo,title
+
+# Keybindings
+keybind = cmd+s>r=reload_config

@@ -1,6 +1,10 @@
 [
   // Leader key shortcuts (work everywhere, not just in editor)
   {
+    "key": "space e",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
     "key": "space space",
     "command": "workbench.action.quickOpen",
     "when": "!editorTextFocus && !inputFocus"

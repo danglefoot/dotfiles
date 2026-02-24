@@ -26,6 +26,26 @@ fi
 echo "🚀 Setting up dotfiles for $OS..."
 
 # ============================================================================
+# Homebrew Bundle (macOS/Linux)
+# ============================================================================
+if [ "$OS" == "macos" ] || [ "$OS" == "linux" ]; then
+    echo ""
+    echo "🍺 Setting up Homebrew packages..."
+
+    if ! command -v brew &> /dev/null; then
+        echo "  ⚠️  Homebrew not found. Install it first:"
+        echo '      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+        echo "  ⏭️  Skipping Homebrew packages"
+    elif [ -f "$DOTFILES_DIR/Brewfile" ]; then
+        echo "  📦 Installing packages from Brewfile..."
+        brew bundle --file="$DOTFILES_DIR/Brewfile" --no-lock
+        echo "  ✓ Homebrew packages installed"
+    else
+        echo "  ⚠️  Brewfile not found at $DOTFILES_DIR/Brewfile"
+    fi
+fi
+
+# ============================================================================
 # Helper Functions
 # ============================================================================
 
@@ -197,6 +217,9 @@ echo ""
 echo "✅ Dotfiles setup complete!"
 echo ""
 echo "Configurations installed:"
+if [ "$OS" == "macos" ] || [ "$OS" == "linux" ]; then
+    echo "  - Homebrew: Packages installed from Brewfile"
+fi
 echo "  - VSCode: Symlinked from ~/.dotfiles/vscode/"
 if [ "$OS" == "windows" ]; then
     echo "  - VsVim: Symlinked to ~/_vsvimrc (Windows uses underscore prefix)"
