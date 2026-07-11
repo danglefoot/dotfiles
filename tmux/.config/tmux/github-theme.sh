@@ -64,17 +64,18 @@ apply() {
   local pipe
   pipe=$(printf '\342\224\202')  # U+2502  │
 
-  # Full-width hairline for the second status line: a bottom border that
-  # visually separates the bar from the panes. Uses U+2594 (▔ upper one-eighth
-  # block), which sits at the TOP of its cell so — on a bg=default row directly
-  # under the bar — it hugs the bar's bottom edge instead of floating mid-row
-  # like a centred U+2500 ─ would. Padded wide; tmux truncates to terminal width.
+  # Full-width line for the second status line: a bottom border that visually
+  # separates the bar from the panes. Uses U+1FB82 (🮂 upper one-quarter block),
+  # which fills the TOP quarter of its cell so — on a canvas-coloured row directly
+  # under the bar — it hugs the bar's bottom edge and grows downward. (U+2594, the
+  # upper one-eighth block, was half this thickness; block glyphs quantise to
+  # eighths of a cell, so a quarter is the next step up.) Padded wide; tmux
+  # truncates to terminal width.
   local rule
-  rule=$(printf '\342\226\224%.0s' {1..500})  # U+2594  ▔ ×500
+  rule=$(printf '\360\237\256\202%.0s' {1..500})  # U+1FB82  🮂 ×500
 
-  # Date/time shown on the right, e.g. "Fri 10 Jul  14:23:45". The same string is
-  # reused on the invisible padding rows so their width matches the real row.
-  # Its fields are all fixed-width, so the right-hand layout never shifts.
+  # Date/time shown on the right, e.g. "Fri 10 Jul  14:23:45". Its fields are all
+  # fixed-width, so the right-hand layout never shifts as the seconds tick.
   local date='%a %d %b  %H:%M:%S'
 
   tmux set-option -g status on
