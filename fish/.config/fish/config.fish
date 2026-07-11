@@ -6,6 +6,24 @@ starship init fish | source
 zoxide init fish | source
 fzf --fish | source
 
+# Syntax-highlighting colors. Use *named* ANSI colors (not hardcoded hex) so
+# they resolve through Ghostty's active palette and stay readable on both the
+# light and dark GitHub themes as macOS appearance switches. fish's built-in
+# defaults are hardcoded hex (e.g. teal operator, olive quote) that wash out on
+# the bright light-high-contrast background.
+set -g fish_color_command blue --bold
+set -g fish_color_param normal
+set -g fish_color_keyword red --bold
+set -g fish_color_quote green
+set -g fish_color_redirection magenta
+set -g fish_color_end magenta
+set -g fish_color_operator cyan
+set -g fish_color_escape cyan
+set -g fish_color_comment brblack
+set -g fish_color_autosuggestion brblack
+set -g fish_color_error red
+set -g fish_color_option blue
+
 alias ll="eza -l -g --icons --git"
 alias llt="eza -1 --icons --tree --git-ignore"
 alias k="kubectl"
@@ -84,3 +102,6 @@ set --export PATH $BUN_INSTALL/bin $PATH
 set -gx DOTNET_ROOT /usr/local/share/dotnet
 fish_add_path $HOME/.dotnet
 fish_add_path $DOTNET_ROOT
+export PATH="$HOME/.local/bin:$PATH"
+
+set -gx TALOSCONFIG $HOME/Code/talos-homelab/clusterconfig/talosconfig

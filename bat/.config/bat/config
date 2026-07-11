@@ -1,0 +1,4 @@
+# bat configuration
+# Light/dark themes follow the terminal appearance (bat 0.25+).
+--theme-light="GitHub"
+--theme-dark="Visual Studio Dark+"

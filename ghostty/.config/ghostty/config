@@ -11,8 +11,14 @@ font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 
+# Thicken glyphs on macOS Retina displays for crisper text
+font-thicken = false
+
 # Theme Configuration (Gruvbox)
-theme = light:Gruvbox Light Hard,dark:Gruvbox Dark Hard
+theme = light:GitHub Light High Contrast,dark:GitHub Dark Dimmed
+
+# Enforce a minimum contrast ratio between text and background (1.0 = off)
+minimum-contrast = 1.2
 
 # Window Configuration
 window-padding-balance = true

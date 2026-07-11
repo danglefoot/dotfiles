@@ -1,0 +1,4 @@
+[[session]]
+name = "nu"
+path = "~"
+startup_command = "nu"

@@ -194,6 +194,12 @@ else
             echo "  ✓ Lazygit configuration stowed"
         fi
 
+        # Stow Sesh
+        if [ -d "sesh" ]; then
+            stow -R sesh
+            echo "  ✓ Sesh configuration stowed"
+        fi
+
         # Stow IdeaVim
         if [ -d "ideavimrc" ]; then
             stow -R ideavimrc

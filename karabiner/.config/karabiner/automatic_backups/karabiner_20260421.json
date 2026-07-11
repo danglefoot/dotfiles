@@ -4,30 +4,6 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Caps Lock to Escape",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.microsoft\\.rdc$",
-                                            "^com\\.microsoft\\.rdc\\.mac$",
-                                            "^com\\.microsoft\\.rdc\\.macos$",
-                                            "^com\\.microsoft\\.rdc\\.osx\\.beta$",
-                                            "^com\\.thinomenon\\.RemoteDesktopConnection$",
-                                            "^com\\.teamviewer\\.TeamViewer$",
-                                            "^com\\.vmware\\.horizon$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": { "key_code": "caps_lock" },
-                                "to": [{ "key_code": "escape" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "@ key",
                         "enabled": false,
                         "manipulators": [
@@ -290,7 +266,6 @@
                     },
                     {
                         "description": "Home key to the beginning of the sentence (Command + Left)",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -321,7 +296,6 @@
                     },
                     {
                         "description": "End key to the end of the sentence (Command + Right)",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -352,7 +326,6 @@
                     },
                     {
                         "description": "Option(Alt)+Tab as Switch Application (Command+Tab)",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -388,7 +361,6 @@
                     },
                     {
                         "description": "Copy/Paste/Cut",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -541,7 +513,6 @@
                     },
                     {
                         "description": "Undo",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -574,7 +545,6 @@
                     },
                     {
                         "description": "Redo",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -607,7 +577,6 @@
                     },
                     {
                         "description": "Select-All",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -640,7 +609,6 @@
                     },
                     {
                         "description": "Save",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -673,7 +641,6 @@
                     },
                     {
                         "description": "New",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -706,7 +673,6 @@
                     },
                     {
                         "description": "Reload browser page Command+R to F5",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -764,7 +730,6 @@
                     },
                     {
                         "description": "New Tab",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -797,7 +762,6 @@
                     },
                     {
                         "description": "Find",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -830,7 +794,6 @@
                     },
                     {
                         "description": "Open",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -863,7 +826,6 @@
                     },
                     {
                         "description": "Close Window",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -995,7 +957,6 @@
                     },
                     {
                         "description": "Quit Application (Alt+F4 to Command+Q)",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1028,7 +989,6 @@
                     },
                     {
                         "description": "Browser open location (Ctrl+L)",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1061,7 +1021,6 @@
                     },
                     {
                         "description": "Browser inspect element (Ctrl+L)",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1189,6 +1148,12 @@
             ],
             "name": "Default profile",
             "selected": true,
+            "simple_modifications": [
+                {
+                    "from": { "key_code": "caps_lock" },
+                    "to": [{ "key_code": "escape" }]
+                }
+            ],
             "virtual_hid_keyboard": {
                 "country_code": 0,
                 "keyboard_type_v2": "ansi"
