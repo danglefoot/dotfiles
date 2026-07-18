@@ -59,10 +59,11 @@ apply() {
   # Absolute path so the embedded watcher works regardless of cwd / tilde.
   local self="${HOME}/.config/tmux/github-theme.sh"
 
-  # Plain vertical-bar divider (U+2502), built from raw UTF-8 bytes via printf so
-  # it survives editing. No powerline/breadcrumb chevrons.
+  # Heavy vertical-bar divider (U+2503), built from raw UTF-8 bytes via printf so
+  # it survives editing. This is the box-drawing "heavy" weight — one step thicker
+  # than the light │ (U+2502). No powerline/breadcrumb chevrons.
   local pipe
-  pipe=$(printf '\342\224\202')  # U+2502  │
+  pipe=$(printf '\342\224\203')  # U+2503  ┃
 
   # Full-width line for the second status line: a bottom border that visually
   # separates the bar from the panes. Uses U+1FB82 (🮂 upper one-quarter block),
