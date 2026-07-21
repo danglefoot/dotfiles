@@ -83,7 +83,11 @@ function mkcd
 end
 
 # pnpm
-set -gx PNPM_HOME "/Users/colin/Library/pnpm"
+if test (uname) = Darwin
+    set -gx PNPM_HOME "$HOME/Library/pnpm"
+else
+    set -gx PNPM_HOME "$HOME/.local/share/pnpm"
+end
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
@@ -99,9 +103,14 @@ set -gx EDITOR (type -p nvim)
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
-set -gx DOTNET_ROOT /usr/local/share/dotnet
+if test (uname) = Darwin
+    set -gx DOTNET_ROOT /usr/local/share/dotnet
+else
+    # dotnet-install.sh puts the SDK in ~/.dotnet on Linux
+    set -gx DOTNET_ROOT $HOME/.dotnet
+end
 fish_add_path $HOME/.dotnet
 fish_add_path $DOTNET_ROOT
-export PATH="$HOME/.local/bin:$PATH"
+# ~/.local/bin is handled early in conf.d/00-path.fish
 
-set -gx TALOSCONFIG $HOME/Code/talos-homelab/clusterconfig/talosconfig
+set -gx TALOSCONFIG $HOME/src/talos-homelab/clusterconfig/talosconfig
