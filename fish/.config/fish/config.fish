@@ -99,6 +99,10 @@ set -gx XDG_STATE_HOME $HOME/.local/state
 set -gx XDG_CACHE_HOME $HOME/.cache
 set -gx EDITOR (type -p nvim)
 
+# Basic ANSI colors only, so fd/ls output follows the terminal theme (readable
+# in both light and dark). Without this, fd falls back to hardcoded 256-colors.
+set -gx LS_COLORS 'di=1;34:ln=36:so=35:pi=33:ex=32:bd=1;33:cd=1;33:su=31:sg=31:tw=1;34:ow=1;34'
+
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
