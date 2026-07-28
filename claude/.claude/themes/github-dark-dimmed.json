@@ -1,0 +1,50 @@
+{
+  "name": "GitHub Dark Dimmed",
+  "base": "dark",
+  "overrides": {
+    "claude": "#539bf5",
+    "claudeShimmer": "#6cb6ff",
+    "text": "#adbac7",
+    "inactive": "#768390",
+    "inactiveShimmer": "#909dab",
+    "subtle": "#636e7b",
+    "suggestion": "#539bf5",
+    "permission": "#539bf5",
+    "permissionShimmer": "#6cb6ff",
+    "remember": "#b083f0",
+
+    "success": "#57ab5a",
+    "error": "#f47067",
+    "warning": "#c69026",
+    "warningShimmer": "#daaa3f",
+    "merged": "#b083f0",
+
+    "promptBorder": "#636e7b",
+    "promptBorderShimmer": "#909dab",
+    "planMode": "#39c5cf",
+    "autoAccept": "#b083f0",
+    "bashBorder": "#f47067",
+    "ide": "#539bf5",
+
+    "diffAdded": "#2a3b35",
+    "diffRemoved": "#423237",
+    "diffAddedDimmed": "#263230",
+    "diffRemovedDimmed": "#332d33",
+    "diffAddedWord": "#375c40",
+    "diffRemovedWord": "#764445",
+
+    "rate_limit_fill": "#539bf5",
+    "rate_limit_empty": "#444c56",
+    "briefLabelYou": "#57ab5a",
+    "briefLabelClaude": "#539bf5",
+
+    "red_FOR_SUBAGENTS_ONLY": "#f47067",
+    "blue_FOR_SUBAGENTS_ONLY": "#539bf5",
+    "green_FOR_SUBAGENTS_ONLY": "#57ab5a",
+    "yellow_FOR_SUBAGENTS_ONLY": "#daaa3f",
+    "purple_FOR_SUBAGENTS_ONLY": "#b083f0",
+    "orange_FOR_SUBAGENTS_ONLY": "#e0823d",
+    "pink_FOR_SUBAGENTS_ONLY": "#d47caf",
+    "cyan_FOR_SUBAGENTS_ONLY": "#39c5cf"
+  }
+}

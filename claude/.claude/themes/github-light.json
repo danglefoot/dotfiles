@@ -1,0 +1,50 @@
+{
+  "name": "GitHub Light High Contrast",
+  "base": "light",
+  "overrides": {
+    "claude": "#0349b4",
+    "claudeShimmer": "#1168e3",
+    "text": "#0e1116",
+    "inactive": "#4b535d",
+    "inactiveShimmer": "#66707b",
+    "subtle": "#66707b",
+    "suggestion": "#0349b4",
+    "permission": "#0349b4",
+    "permissionShimmer": "#1168e3",
+    "remember": "#844ae7",
+
+    "success": "#055d20",
+    "error": "#a0111f",
+    "warning": "#4e2c00",
+    "warningShimmer": "#744500",
+    "merged": "#622cbc",
+
+    "promptBorder": "#4b535d",
+    "promptBorderShimmer": "#66707b",
+    "planMode": "#1b7c83",
+    "autoAccept": "#622cbc",
+    "bashBorder": "#a0111f",
+    "ide": "#0349b4",
+
+    "diffAdded": "#d1f8d9",
+    "diffRemoved": "#ffe2e0",
+    "diffAddedDimmed": "#ecfdf0",
+    "diffRemovedDimmed": "#fff0ee",
+    "diffAddedWord": "#a2f2b4",
+    "diffRemovedWord": "#ffc1bc",
+
+    "rate_limit_fill": "#0349b4",
+    "rate_limit_empty": "#d0d7de",
+    "briefLabelYou": "#055d20",
+    "briefLabelClaude": "#0349b4",
+
+    "red_FOR_SUBAGENTS_ONLY": "#a0111f",
+    "blue_FOR_SUBAGENTS_ONLY": "#0349b4",
+    "green_FOR_SUBAGENTS_ONLY": "#024c1a",
+    "yellow_FOR_SUBAGENTS_ONLY": "#4e2c00",
+    "purple_FOR_SUBAGENTS_ONLY": "#622cbc",
+    "orange_FOR_SUBAGENTS_ONLY": "#744500",
+    "pink_FOR_SUBAGENTS_ONLY": "#844ae7",
+    "cyan_FOR_SUBAGENTS_ONLY": "#1b7c83"
+  }
+}
