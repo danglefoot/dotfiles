@@ -114,6 +114,7 @@ else
     set -gx DOTNET_ROOT $HOME/.dotnet
 end
 fish_add_path $HOME/.dotnet
+fish_add_path $HOME/.dotnet/tools # global dotnet tools (e.g. dotnet-easydotnet for C# LSP)
 fish_add_path $DOTNET_ROOT
 # ~/.local/bin is handled early in conf.d/00-path.fish
 

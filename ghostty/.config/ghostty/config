@@ -3,7 +3,7 @@
 # ============================================================================
 
 # Font Configuration
-font-family = Berkeley Mono
+font-family = BerkeleyMono Nerd Font
 font-size = 13
 
 # Disable font ligatures
@@ -39,3 +39,7 @@ shell-integration-features = cursor,sudo,title
 
 # Keybindings
 keybind = cmd+s>r=reload_config
+
+# Free up cmd+d / cmd+shift+d (split pane) for Wispr dictation
+keybind = cmd+d=unbind
+keybind = cmd+shift+d=unbind

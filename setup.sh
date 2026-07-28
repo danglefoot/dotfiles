@@ -212,6 +212,14 @@ else
             echo "  ✓ VsVim configuration stowed"
         fi
 
+        # Stow Claude Code (--no-folding: ~/.claude also holds runtime data
+        # that must stay outside the repo, so never symlink the whole dir)
+        if [ -d "claude" ]; then
+            mkdir -p "$HOME/.claude"
+            stow --no-folding -R claude
+            echo "  ✓ Claude Code configuration stowed"
+        fi
+
         cd - > /dev/null
     fi
 fi
