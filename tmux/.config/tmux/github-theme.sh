@@ -59,21 +59,19 @@ apply() {
   # Absolute path so the embedded watcher works regardless of cwd / tilde.
   local self="${HOME}/.config/tmux/github-theme.sh"
 
-  # Heavy vertical-bar divider (U+2503), built from raw UTF-8 bytes via printf so
-  # it survives editing. This is the box-drawing "heavy" weight — one step thicker
-  # than the light │ (U+2502). No powerline/breadcrumb chevrons.
+  # Plain vertical-bar divider (U+2502), built from raw UTF-8 bytes via printf so
+  # it survives editing. No powerline/breadcrumb chevrons.
   local pipe
-  pipe=$(printf '\342\224\203')  # U+2503  ┃
+  pipe=$(printf '\342\224\202')  # U+2502  │
 
-  # Full-width line for the second status line: a bottom border that visually
-  # separates the bar from the panes. Uses U+1FB82 (🮂 upper one-quarter block),
-  # which fills the TOP quarter of its cell so — on a canvas-coloured row directly
-  # under the bar — it hugs the bar's bottom edge and grows downward. (U+2594, the
-  # upper one-eighth block, was half this thickness; block glyphs quantise to
-  # eighths of a cell, so a quarter is the next step up.) Padded wide; tmux
+  # Full-width hairline for the second status line: a bottom border that
+  # visually separates the bar from the panes. Uses U+2594 (▔ upper one-eighth
+  # block) — the thinnest block glyph — which sits at the TOP of its cell so, on
+  # a canvas-coloured row directly under the bar, it hugs the bar's bottom edge
+  # instead of floating mid-row like a centred U+2500 ─ would. Padded wide; tmux
   # truncates to terminal width.
   local rule
-  rule=$(printf '\360\237\256\202%.0s' {1..500})  # U+1FB82  🮂 ×500
+  rule=$(printf '\342\226\224%.0s' {1..500})  # U+2594  ▔ ×500
 
   # Date/time shown on the right, e.g. "Fri 10 Jul  14:23:45". Its fields are all
   # fixed-width, so the right-hand layout never shifts as the seconds tick.
