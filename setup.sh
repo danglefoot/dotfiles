@@ -46,6 +46,17 @@ if [ "$OS" == "macos" ] || [ "$OS" == "linux" ]; then
 fi
 
 # ============================================================================
+# Git Submodules (nvim config lives in its own repo)
+# ============================================================================
+echo ""
+echo "🔗 Initializing git submodules..."
+if git -C "$DOTFILES_DIR" submodule update --init --recursive; then
+    echo "  ✓ Submodules initialized"
+else
+    echo "  ⚠️  Submodule init failed (check SSH access to GitHub)"
+fi
+
+# ============================================================================
 # Helper Functions
 # ============================================================================
 
@@ -221,6 +232,33 @@ else
         fi
 
         cd - > /dev/null
+    fi
+fi
+
+# ============================================================================
+# Tmux Plugin Manager (TPM) + plugins
+# ============================================================================
+if command -v tmux &> /dev/null && [ -e "$HOME/.config/tmux/tmux.conf" ]; then
+    echo ""
+    echo "🔌 Setting up tmux plugins..."
+
+    TPM_DIR="$HOME/.config/tmux/plugins/tpm"
+    if [ ! -d "$TPM_DIR" ]; then
+        git clone --depth 1 https://github.com/tmux-plugins/tpm "$TPM_DIR"
+        echo "  ✓ TPM installed"
+    else
+        echo "  ✓ TPM already installed"
+    fi
+
+    # A server started before TPM existed won't have its plugin path loaded;
+    # source the config into it so install_plugins can read the plugin list
+    if tmux info &> /dev/null; then
+        tmux source-file "$HOME/.config/tmux/tmux.conf"
+    fi
+    if "$TPM_DIR/bin/install_plugins" > /dev/null; then
+        echo "  ✓ Tmux plugins installed"
+    else
+        echo "  ⚠️  Plugin install failed — run prefix+I inside tmux"
     fi
 fi
 
