@@ -11,10 +11,22 @@
 # tmux re-evaluates every `status-interval` seconds. Detection uses
 # `defaults read AppleInterfaceStyle` (reliable inside tmux), NOT a terminal
 # background query.
+#
+# On Linux (headless/SSH) there is no system appearance: the mode set with
+# `apply light|dark` is persisted to $MODE_FILE and used until changed
+# (default: dark).
 
 set -euo pipefail
 
+# Linux has no system appearance to follow; `apply light|dark` persists the
+# choice here and detect_mode reads it back (so the watcher doesn't undo it).
+MODE_FILE="${XDG_STATE_HOME:-$HOME/.local/state}/tmux/github-theme-mode"
+
 detect_mode() {
+  if [[ "$OSTYPE" != darwin* ]]; then
+    cat "$MODE_FILE" 2>/dev/null || echo dark
+    return
+  fi
   # Use System Events for the LIVE appearance. `defaults read AppleInterfaceStyle`
   # is unreliable here: its .GlobalPreferences cache often returns a stale value
   # after a light<->dark toggle, so the bar would never switch.
@@ -150,7 +162,13 @@ apply() {
 
 case "${1:-apply}" in
 apply)
-  # `apply [light|dark]` forces a mode; with no arg, follow the system.
+  # `apply [light|dark]` forces a mode; with no arg, follow the system (macOS)
+  # or the persisted choice (Linux). An explicit mode on Linux is persisted so
+  # the status-right watcher keeps it instead of reverting to the default.
+  if [[ -n "${2:-}" && "$OSTYPE" != darwin* ]]; then
+    mkdir -p "$(dirname "$MODE_FILE")"
+    printf '%s\n' "$2" > "$MODE_FILE"
+  fi
   apply "${2:-$(detect_mode)}"
   ;;
 watch)

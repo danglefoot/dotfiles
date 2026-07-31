@@ -13,6 +13,6 @@
   },
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
-  "theme": "custom:github-light",
+  "theme": "custom:github-dark-dimmed",
   "editorMode": "vim"
 }
