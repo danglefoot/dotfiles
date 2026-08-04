@@ -33,6 +33,11 @@ macos-non-native-fullscreen = true
 # Left Option acts as Alt for keybindings, right Option still types special characters
 macos-option-as-alt = left
 
+# Clipboard
+# Allow OSC 52 clipboard access without prompting (fixes tmux clipboard sync prompts)
+clipboard-read = allow
+clipboard-write = allow
+
 # Shell Integration
 shell-integration = fish
 shell-integration-features = cursor,sudo,title
