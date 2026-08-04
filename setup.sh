@@ -223,6 +223,23 @@ else
             echo "  ✓ VsVim configuration stowed"
         fi
 
+        # Stow gh-dash (--no-folding: ~/.config/gh-dash also holds the
+        # generated config-light.yml, which must stay outside the repo)
+        if [ -d "gh-dash" ]; then
+            mkdir -p "$HOME/.config/gh-dash"
+            stow --no-folding -R gh-dash
+            echo "  ✓ gh-dash configuration stowed"
+        fi
+
+        # Stow ssh (--no-folding: ~/.ssh holds private keys and known_hosts
+        # that must never be symlinked into the repo)
+        if [ -d "ssh" ]; then
+            mkdir -p "$HOME/.ssh"
+            chmod 700 "$HOME/.ssh"
+            stow --no-folding -R ssh
+            echo "  ✓ ssh configuration stowed"
+        fi
+
         # Stow Claude Code (--no-folding: ~/.claude also holds runtime data
         # that must stay outside the repo, so never symlink the whole dir)
         if [ -d "claude" ]; then
