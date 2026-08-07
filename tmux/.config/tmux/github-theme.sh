@@ -89,10 +89,6 @@ apply() {
   local rule
   rule=$(printf '\342\226\224%.0s' {1..500})  # U+2594  ▔ ×500
 
-  # Date/time shown on the right, e.g. "Fri 10 Jul  14:23:45". Its fields are all
-  # fixed-width, so the right-hand layout never shifts as the seconds tick.
-  local date='%a %d %b  %H:%M:%S'
-
   tmux set-option -g status on
   tmux set-option -g status-justify left
   tmux set-option -g status-left-length 80
@@ -124,14 +120,12 @@ apply() {
   tmux set-option -g status-left \
     "#[bg=${green},fg=${green_fg},bold] #h #[bg=${red},fg=${red_fg},bold] #S #[bg=${bar},fg=${muted}] "
 
-  # Right: preserve tmux-continuum's autosave hook (it prepends its own #() to
-  # status-right at load), then the invisible appearance watcher, then
-  #  date  time  (host now lives in the left chip).
+  # Right: nothing visible — just tmux-continuum's autosave hook (it prepends
+  # its own #() to status-right at load) and the invisible appearance watcher.
   local keep
   keep="$(tmux show-option -gqv status-right 2>/dev/null \
     | grep -oE '#\([^)]*continuum_save\.sh\)' || true)"
-  tmux set-option -g status-right \
-    "${keep}#(${self} watch)#[bg=${bar},fg=${muted}] ${date} "
+  tmux set-option -g status-right "${keep}#(${self} watch)"
 
   # Inactive = flat muted text on the bar; active = a blue block with contrasting
   # text (mirrors the red session block).
@@ -180,9 +174,8 @@ watch)
   # Invisible side-effect call from status-right: re-theme only when the macOS
   # appearance has changed since the last apply. Emits nothing.
   #
-  # status-interval is 1s (so the clock's seconds tick), but polling the
-  # appearance that often would spawn osascript every second. Throttle to ~5s
-  # using an mtime marker; the seconds keep ticking, the poll stays cheap.
+  # Runs every status-interval; throttle to ~5s with an mtime marker so a short
+  # interval never spawns osascript more often than that.
   stamp="${TMPDIR:-/tmp}/.tmux-github-theme-poll"
   if [[ -f "$stamp" ]]; then
     now=$(date +%s)
