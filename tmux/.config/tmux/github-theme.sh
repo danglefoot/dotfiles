@@ -43,10 +43,10 @@ apply() {
   local mode="$1"
 
   # ---- GitHub Primer palettes ----
-  local bar surface border fg muted accent accent_fg red red_fg canvas
+  local bar surface border fg muted accent accent_fg red red_fg green green_fg canvas
   if [[ "$mode" == "dark" ]]; then
     bar="#30363d"       # border.default -> clearly visible bar (not near-black)
-    surface="#21262d"   # border.muted   -> recessed host chip
+    surface="#21262d"   # border.muted   -> messages
     border="#768390"    # window dividers
     fg="#f0f3f6"
     muted="#c9d1d9"     # inactive windows / date (lighter, more readable)
@@ -54,10 +54,12 @@ apply() {
     accent_fg="#0d1117"
     red="#f85149"
     red_fg="#0d1117"
+    green="#3fb950"     # success.fg -> host chip
+    green_fg="#0d1117"
     canvas="#22272e"    # Ghostty "GitHub Dark Dimmed" background -> pane bg
   else
     bar="#eaeef2"       # light bar background
-    surface="#f6f8fa"   # host chip / messages
+    surface="#f6f8fa"   # messages
     border="#8c959f"    # window dividers
     fg="#1f2328"        # near-black text
     muted="#57606a"     # inactive windows / date
@@ -65,6 +67,8 @@ apply() {
     accent_fg="#ffffff"
     red="#cf222e"
     red_fg="#ffffff"
+    green="#1a7f37"     # success.fg -> host chip
+    green_fg="#ffffff"
     canvas="#ffffff"    # Ghostty "GitHub Light High Contrast" background -> pane bg
   fi
 
@@ -115,18 +119,19 @@ apply() {
   # Pipe divider between windows.
   tmux set-window-option -g window-status-separator "#[bg=${bar},fg=${border}]${pipe}"
 
-  # Left: session name on a red block.
+  # Left: machine > session — hostname on a green block, session name on a red
+  # block. #h is the short hostname, so the chip stays compact on remotes too.
   tmux set-option -g status-left \
-    "#[bg=${red},fg=${red_fg},bold] #S #[bg=${bar},fg=${muted}] "
+    "#[bg=${green},fg=${green_fg},bold] #h #[bg=${red},fg=${red_fg},bold] #S #[bg=${bar},fg=${muted}] "
 
   # Right: preserve tmux-continuum's autosave hook (it prepends its own #() to
   # status-right at load), then the invisible appearance watcher, then
-  #  date  time | host .
+  #  date  time  (host now lives in the left chip).
   local keep
   keep="$(tmux show-option -gqv status-right 2>/dev/null \
     | grep -oE '#\([^)]*continuum_save\.sh\)' || true)"
   tmux set-option -g status-right \
-    "${keep}#(${self} watch)#[bg=${bar},fg=${muted}] ${date} #[fg=${border}]${pipe}#[fg=${fg}] #h "
+    "${keep}#(${self} watch)#[bg=${bar},fg=${muted}] ${date} "
 
   # Inactive = flat muted text on the bar; active = a blue block with contrasting
   # text (mirrors the red session block).
