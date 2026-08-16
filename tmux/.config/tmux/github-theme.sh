@@ -6,6 +6,7 @@
 #
 #   github-theme.sh [apply] [light|dark]   # apply (no mode arg = follow system)
 #   github-theme.sh watch                  # re-apply only if appearance changed
+#   github-theme.sh mode                   # print the current mode: light|dark
 #
 # Switching is driven by an invisible #() call embedded in status-right that
 # tmux re-evaluates every `status-interval` seconds. Detection uses
@@ -14,7 +15,8 @@
 #
 # On Linux (headless/SSH) there is no system appearance: the mode set with
 # `apply light|dark` is persisted to $MODE_FILE and used until changed
-# (default: dark).
+# (default: dark). nvim's github-theme.lua reads the same file, and the `dev`
+# fish function pushes the Mac's appearance into it over SSH.
 
 set -euo pipefail
 
@@ -187,8 +189,11 @@ watch)
   have="$(tmux show-option -gqv @github-theme-mode)"
   [[ "$want" != "$have" ]] && apply "$want"
   ;;
+mode)
+  detect_mode
+  ;;
 *)
-  echo "usage: github-theme.sh [apply [light|dark]] | watch" >&2
+  echo "usage: github-theme.sh [apply [light|dark]] | watch | mode" >&2
   exit 64
   ;;
 esac
