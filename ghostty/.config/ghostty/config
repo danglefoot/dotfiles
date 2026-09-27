@@ -53,3 +53,7 @@ keybind = cmd+s>r=reload_config
 # Free up cmd+d / cmd+shift+d (split pane) for Wispr dictation
 keybind = cmd+d=unbind
 keybind = cmd+shift+d=unbind
+
+# Per-machine overrides (e.g. font-size: Linux renders points ~1.33x larger
+# than macOS). Optional; lives outside the repo, next to the stowed config.
+config-file = ?local
