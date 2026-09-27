@@ -13,19 +13,37 @@
 # `defaults read AppleInterfaceStyle` (reliable inside tmux), NOT a terminal
 # background query.
 #
-# On Linux (headless/SSH) there is no system appearance: the mode set with
+# On a Linux desktop (GNOME), the mode follows the Dark Style setting
+# (org.gnome.desktop.interface color-scheme) and is mirrored to $MODE_FILE.
+# On headless/SSH Linux there is no system appearance: the mode set with
 # `apply light|dark` is persisted to $MODE_FILE and used until changed
 # (default: dark). nvim's github-theme.lua reads the same file, and the `dev`
-# fish function pushes the Mac's appearance into it over SSH.
+# fish function pushes the local appearance into it over SSH.
 
 set -euo pipefail
 
-# Linux has no system appearance to follow; `apply light|dark` persists the
-# choice here and detect_mode reads it back (so the watcher doesn't undo it).
+# Headless Linux has no system appearance to follow; `apply light|dark`
+# persists the choice here and detect_mode reads it back (so the watcher
+# doesn't undo it). On a desktop it mirrors GNOME so nvim follows too.
 MODE_FILE="${XDG_STATE_HOME:-$HOME/.local/state}/tmux/github-theme-mode"
 
 detect_mode() {
   if [[ "$OSTYPE" != darwin* ]]; then
+    # Only trust gsettings inside a graphical session: on a headless box it
+    # still answers, but with the schema default ('default' = light).
+    if [[ -n "${WAYLAND_DISPLAY:-}${DISPLAY:-}" ]] && command -v gsettings >/dev/null; then
+      local scheme mode=light
+      scheme=$(gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null) || scheme=""
+      if [[ -n "$scheme" ]]; then
+        [[ "$scheme" == *prefer-dark* ]] && mode=dark
+        if [[ "$(cat "$MODE_FILE" 2>/dev/null)" != "$mode" ]]; then
+          mkdir -p "$(dirname "$MODE_FILE")"
+          printf '%s\n' "$mode" > "$MODE_FILE"
+        fi
+        echo "$mode"
+        return
+      fi
+    fi
     cat "$MODE_FILE" 2>/dev/null || echo dark
     return
   fi
