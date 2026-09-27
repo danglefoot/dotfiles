@@ -3,10 +3,12 @@
 # ============================================================================
 
 # Font Configuration
-font-family = BerkeleyMono Nerd Font
-# Fallback for machines with only the plain (non-patched) Berkeley Mono;
-# Ghostty bundles Nerd Font symbols itself, so icons still render.
+# Plain Berkeley Mono first: on Linux, fontconfig "finds" a missing family by
+# substituting its closest guess (DejaVu), so a missing first entry never falls
+# through. Macs with only the Nerd Font build skip the missing plain family and
+# use the next line. Ghostty bundles Nerd Font symbols, so icons render either way.
 font-family = Berkeley Mono
+font-family = BerkeleyMono Nerd Font
 font-size = 13
 
 # Disable font ligatures
