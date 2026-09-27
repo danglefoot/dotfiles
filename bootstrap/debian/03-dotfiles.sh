@@ -38,7 +38,10 @@ if [ -f "$HOME/.ssh/id_ed25519.pub" ]; then
   gh ssh-key add "$HOME/.ssh/id_ed25519.pub" --title "$(hostname)" --type authentication 2>/dev/null \
     && ok "uploaded SSH key ($(hostname))" || true
 fi
-if ssh -T -o StrictHostKeyChecking=yes git@github.com 2>&1 | grep -q "successfully authenticated"; then
+# ssh -T to GitHub always exits 1 (no shell access), which pipefail would
+# propagate through a pipe — capture the output first, then match on it.
+ssh_out="$(ssh -T -o StrictHostKeyChecking=yes git@github.com 2>&1)"
+if grep -q "successfully authenticated" <<<"$ssh_out"; then
   ok "SSH push access OK"
 else
   fail "SSH auth to GitHub failed"; exit 1
