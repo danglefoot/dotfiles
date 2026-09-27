@@ -4,6 +4,9 @@
 
 # Font Configuration
 font-family = BerkeleyMono Nerd Font
+# Fallback for machines with only the plain (non-patched) Berkeley Mono;
+# Ghostty bundles Nerd Font symbols itself, so icons still render.
+font-family = Berkeley Mono
 font-size = 13
 
 # Disable font ligatures
